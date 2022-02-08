@@ -1,0 +1,52 @@
+package com.demo.producer.controller;
+
+import javax.validation.Valid;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.Size;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.demo.producer.model.MessageData;
+import com.demo.producer.service.ProducerService;
+@Validated
+@RestController("/producer")
+public class ProducerController {
+
+	@Autowired
+	ProducerService producerService;
+	
+	@PostMapping("/{queuename}/{message}")
+	public ResponseEntity<?> sendMessage(@PathVariable("queuename") @Size(max = 10)  String queuename, 
+	        @PathVariable("message") @Size(max = 100) String messages){
+		
+		
+		try {
+		producerService.createDestinationWithMessage(queuename, messages) ;
+		return ResponseEntity.ok().body("Sucesss");
+		}catch(Exception exp) {
+			return ResponseEntity.ok().body(exp.getMessage());
+		}
+	}
+	
+	@PostMapping("/{queuename}/{message}")
+	public ResponseEntity<?> sendMessageObject(@PathVariable("queuename") @Size(max = 10)  String queuename, 
+			@Valid @RequestBody MessageData messageData){
+		
+		
+		try {
+		//producerService.createDestinationWithMessage(queuename, messages) ;
+		return ResponseEntity.ok().body("Sucesss");
+		}catch(Exception exp) {
+			return ResponseEntity.ok().body(exp.getMessage());
+		}
+	}
+}

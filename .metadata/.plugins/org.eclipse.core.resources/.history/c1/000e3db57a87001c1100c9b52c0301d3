@@ -1,0 +1,20 @@
+package service;
+
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
+
+//@Service
+@Component
+public class SendService {
+	
+	private JmsTemplate jmsTemplate;
+	
+	public SendService(JmsTemplate jmsTempalte) {
+		this.jmsTemplate = jmsTemplate;
+	}
+	
+	public void sendName(String name) {
+		jmsTemplate.convertAndSend("sudhaQueue", name);
+	}
+
+}

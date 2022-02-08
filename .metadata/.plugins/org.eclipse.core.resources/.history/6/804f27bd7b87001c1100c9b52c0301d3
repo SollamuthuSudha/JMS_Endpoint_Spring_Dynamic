@@ -1,0 +1,6 @@
+#efault
+
+spring.activemq.broker=tcp://ocalhost:61616?wireFormat.maxInactivityDurationInitalDelay=3000
+
+spring.activemq.user=admin
+spring.activemq.password = admin

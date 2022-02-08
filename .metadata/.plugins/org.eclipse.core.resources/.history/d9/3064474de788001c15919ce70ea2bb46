@@ -1,0 +1,67 @@
+package com.demo.consumerApplication;
+
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.hamcrest.Matchers;
+import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.demo.consumer.service.ConsumerService;
+
+
+@WebMvcTest
+class ConsumerApplicationTests {
+
+	@Autowired
+	protected MockMvc mvc;
+	
+	@Autowired
+    private MockMvc mockMvc;
+	
+	@MockBean
+	ConsumerService consumerService;
+	
+	@Autowired
+	WebApplicationContext webApplicationContext;
+
+	protected void setUp() {
+		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+
+	@Test
+	public void testCreateQueueMessage() throws Exception {
+		String uri = "/queuename";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.ALL_VALUE))
+				.andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(200, status);
+
+		
+		String queue = "testQueue";
+        String message = "testMessage";
+        Mockito.when(consumerService.readMessage(ArgumentMatchers.any())).thenReturn("testMessage");
+        MvcResult mvcResult2 = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.ALL_VALUE))
+				.andReturn();
+
+		int status2 = mvcResult.getResponse().getStatus();
+		assertEquals(200, status);
+    }
+
+}

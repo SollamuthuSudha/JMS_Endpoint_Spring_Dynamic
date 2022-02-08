@@ -1,0 +1,22 @@
+package com.demo.producerApplication.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
+
+//@Service
+@Component
+public class SendService {
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	
+	public SendService(JmsTemplate jmsTempalte) {
+		this.jmsTemplate = jmsTemplate;
+	}
+	
+	public void sendName(String name) {
+		jmsTemplate.convertAndSend("sudhaQueue", name);
+	}
+
+}

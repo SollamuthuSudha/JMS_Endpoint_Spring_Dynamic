@@ -1,0 +1,30 @@
+package com.demo.producerApplication;
+
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+
+import com.demo.producer.service.ProducerService;
+
+@RunWith(SpringRunner.class)
+@SpringBootTest
+
+class ProducerApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+	
+	@Autowired
+	ProducerService producerService;
+	
+	@Test
+	  public void testReceive() throws Exception {
+		producerService.sendMessage("Hello Spring JMS ActiveMQ!");
+
+	    receiver.getLatch().await(10000, TimeUnit.MILLISECONDS);
+	    assertThat(receiver.getLatch().getCount()).isEqualTo(0);
+	  }
+
+}

@@ -1,0 +1,9 @@
+package com.demo.producer.model;
+
+import java.util.List;
+
+public class ProducerData {
+
+	String queue;
+	List<String> messages;
+}

@@ -1,0 +1,6 @@
+#efault
+server.error.whitelabel.enabled=false
+server.servlet.context-path=/mainstay
+spring.activemq.broker-url=tcp://localhost:61616
+spring.activemq.user=admin
+spring.activemq.password=admin

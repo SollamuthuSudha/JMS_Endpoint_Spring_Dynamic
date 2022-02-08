@@ -1,0 +1,5 @@
+package com.demo.producer.service.impl;
+
+public class ProducerServiceImpl {
+
+}

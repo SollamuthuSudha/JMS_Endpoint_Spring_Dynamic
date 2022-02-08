@@ -1,0 +1,14 @@
+package com.demo.producer;
+
+import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.web.servlet.MockMvc;
+
+@WebMvcTest
+public class WebLayerTest {
+
+	@Autowired
+	private MockMvc mockMvc;
+
+}

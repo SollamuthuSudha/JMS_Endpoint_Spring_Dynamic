@@ -1,0 +1,12 @@
+package com.demo.producer.excpetion;
+
+import java.util.List;
+
+public class ErrorResponse {
+	
+	 private List<ErrorModel> errorMessage;
+
+
+	
+	
+}

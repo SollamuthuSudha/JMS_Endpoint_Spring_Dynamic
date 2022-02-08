@@ -1,0 +1,26 @@
+package com.demo.consumer.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+
+@RestController
+public class ConsumerController {
+
+	@Autowired
+	ConsumerService consumerService;
+	
+	@PostMapping("/{queuename}")
+	public ResponseEntity<?> readMessage(@PathVariable("queuename") String queuename){	
+		try {
+			consumerService.readMessage(queuename) ;
+		return ResponseEntity.ok().body("Sucesss");
+		}catch(Exception exp) {
+			return ResponseEntity.ok().body(exp.getMessage());
+		}
+	}
+}

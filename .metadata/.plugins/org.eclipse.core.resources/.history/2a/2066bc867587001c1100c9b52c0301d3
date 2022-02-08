@@ -1,0 +1,17 @@
+package com.demo.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class QueueController {
+	
+	@GetMapping("/send/{name}")
+	public String sendName(@PathVariable("name")String name) {
+		
+		return null;
+	}
+	
+
+}

@@ -1,0 +1,20 @@
+package com.demo.consumerApplication.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
+
+public class ConsumerServiceImpl {
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	String consumeQueue(String queueName) {
+		try {
+			return jmsTemplate.receiveAndConvert(queueName).toString();
+		} catch (JmsException ex) {
+			ex.printStackTrace();
+			return "FAIL";
+		}
+	}
+}

@@ -1,0 +1,19 @@
+package com.demo.producer.service.impl;
+
+import com.demo.producer.service.ProducerService;
+
+public class ProducerServiceImpl implements ProducerService {
+
+	@Override
+	public void sendMessage(String message) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void createDestination(String destinationName) {
+		// TODO Auto-generated method stub
+		
+	}
+
+}

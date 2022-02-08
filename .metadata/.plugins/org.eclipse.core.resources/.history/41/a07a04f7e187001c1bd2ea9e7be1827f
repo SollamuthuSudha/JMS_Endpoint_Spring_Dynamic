@@ -1,0 +1,7 @@
+#efault
+server.error.whitelabel.enabled=false
+server.servlet.context-path=/mainstay
+spring.activemq.broker=tcp://localhost:8161?wireFormat.maxInactivityDurationInitalDelay=3000
+
+spring.activemq.user=admin
+spring.activemq.password = admin

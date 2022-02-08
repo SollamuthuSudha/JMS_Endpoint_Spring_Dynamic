@@ -1,0 +1,14 @@
+package com.demo.consumerApplication.service;
+
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MessageConsumerService {
+	
+	@JmsListener(destination="youtubeg")
+	public void listener(String name) {
+		System.out.println("The name sent from Queue:" +name);
+	}
+
+}

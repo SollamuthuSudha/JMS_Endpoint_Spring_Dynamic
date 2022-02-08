@@ -1,0 +1,38 @@
+package com.demo.producer.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Service;
+
+import com.demo.producer.excpetion.ProducerException;
+import com.demo.producer.service.ProducerService;
+
+@Service
+public class ProducerServiceImpl implements ProducerService {
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	@Override
+	public void sendMessage(String message) {
+		// send message to default Queue
+	}
+
+	@Override
+	public void createDestinationWithMessage(String destinationName, String message) {
+		try {
+			jmsTemplate.convertAndSend(destinationName, message);
+		} catch (JmsException exp) {
+			System.out.println("oops...........");
+			throw new ProducerException("Exception while sending messing" + exp.getMessage());
+		}
+
+	}
+
+	@Override
+	public void createDestination(String destinationName) {
+		// Create Queue/topic only without message
+	}
+
+}

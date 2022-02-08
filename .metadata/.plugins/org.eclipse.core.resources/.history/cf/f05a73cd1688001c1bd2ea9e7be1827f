@@ -1,0 +1,8 @@
+package com.demo.producer.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController("/producer")
+public class ProducerController {
+
+}

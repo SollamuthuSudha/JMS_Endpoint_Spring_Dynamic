@@ -1,0 +1,27 @@
+package com.demo.producer.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Component;
+
+//@Service
+@Component
+public class SendService {
+	
+	@Autowired
+	private JmsTemplate jmsTemplate;
+	
+	public void sendName(String name) {
+		System.out.println(" Name : "+name);
+		jmsTemplate.convertAndSend("youtubegTest", name);
+		System.out.println(" Name : "+"youtubeg");
+	}
+
+	public void create(String name) {
+		System.out.println(" Name : "+name);
+		jmsTemplate.convertAndSend("youtubegTest", name);
+		//jmsTemplate.
+		System.out.println(" Name : "+"youtubeg");
+	}
+
+}

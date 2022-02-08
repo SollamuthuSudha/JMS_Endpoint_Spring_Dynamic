@@ -1,0 +1,10 @@
+package com.demo.producer.excpetion;
+
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class ErrorResponse {
+    private List<ErrorModel> errorMessage;
+
+}

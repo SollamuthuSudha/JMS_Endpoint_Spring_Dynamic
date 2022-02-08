@@ -1,0 +1,29 @@
+package com.demo.producer.model;
+
+
+public class MessageData {
+
+	int id;
+	String message;
+	String custName;
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getMessage() {
+		return message;
+	}
+	public void setMessage(String message) {
+		this.message = message;
+	}
+	public String getCustName() {
+		return custName;
+	}
+	public void setCustName(String custName) {
+		this.custName = custName;
+	}
+	
+}

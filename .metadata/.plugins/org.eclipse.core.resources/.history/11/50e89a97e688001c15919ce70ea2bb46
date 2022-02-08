@@ -1,0 +1,67 @@
+package com.demo.producer;
+
+import static org.junit.Assert.assertEquals;
+
+import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.mockito.ArgumentMatchers;
+import org.mockito.InjectMocks;
+import org.mockito.Mockito;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.web.WebAppConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.web.context.WebApplicationContext;
+
+import com.demo.producer.controller.ProducerController;
+import com.demo.producer.service.ProducerService;
+
+
+@WebMvcTest
+class ProducerApplicationTests {
+
+	protected MockMvc mvc;
+	
+	@Autowired
+    private MockMvc mockMvc;
+	
+	@MockBean
+	ProducerService producerService;
+	
+	@Autowired
+	WebApplicationContext webApplicationContext;
+
+	protected void setUp() {
+		mvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
+	}
+
+
+	@Test
+	public void testCreateQueueMessage() throws Exception {
+		String uri = "/queuename/message";
+		MvcResult mvcResult = mvc.perform(MockMvcRequestBuilders.get(uri).accept(MediaType.ALL_VALUE))
+				.andReturn();
+
+		int status = mvcResult.getResponse().getStatus();
+		assertEquals(200, status);
+
+		
+		String queue = "testQueue";
+        String message = "testMessage";
+        Mockito.when(producerService.createDestinationWithMessage(ArgumentMatchers.any(),ArgumentMatchers.any())).thenReturn("ok");
+        String json = mapper.writeValueAsString(student);
+        mockMvc.perform(post("/postMapping").contentType(MediaType.APPLICATION_JSON).characterEncoding("utf-8")
+                .content(json).accept(MediaType.APPLICATION_JSON)).andExpect(status().isCreated())
+                .andExpect(jsonPath("$.id", Matchers.equalTo(1)))
+                .andExpect(jsonPath("$.name", Matchers.equalTo("Arun")));
+    }
+	}
+
+}

@@ -1,0 +1,10 @@
+package com.demo.producer.excpetion;
+
+public class ErrorResponse {
+	
+	 private List<ErrorModel> errorMessage;
+
+
+	
+	
+}

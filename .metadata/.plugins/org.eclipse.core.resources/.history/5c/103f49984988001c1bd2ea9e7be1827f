@@ -1,0 +1,24 @@
+package com.demo.consumer.service;
+
+import org.springframework.jms.annotation.JmsListener;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MessageConsumerService {
+	
+	@JmsListener(destination="youtubeg")
+	public void listener(String name) {
+		System.out.println("The name sent from Queue:" +name);
+	}
+
+	
+	@GetMapping("recv")
+	String recv(){
+	    try{
+	        return jmsTemplate.receiveAndConvert("DEV.QUEUE.1").toString();
+	    }catch(JmsException ex){
+	        ex.printStackTrace();
+	        return "FAIL";
+	    }
+	}
+}

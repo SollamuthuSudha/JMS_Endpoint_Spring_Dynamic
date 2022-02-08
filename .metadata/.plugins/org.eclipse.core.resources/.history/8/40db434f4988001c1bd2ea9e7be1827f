@@ -1,0 +1,22 @@
+package com.demo.consumer.service.impl;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.JmsException;
+import org.springframework.jms.core.JmsTemplate;
+import org.springframework.stereotype.Service;
+
+@Service
+public class ConsumerServiceImpl {
+
+	@Autowired
+	private JmsTemplate jmsTemplate;
+
+	String readMessage(String queueName) {
+		try {
+			return jmsTemplate.receiveAndConvert(queueName).toString();
+		} catch (JmsException ex) {
+			ex.printStackTrace();
+			return "FAIL";
+		}
+	}
+}

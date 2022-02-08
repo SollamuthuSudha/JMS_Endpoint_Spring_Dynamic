@@ -1,0 +1,8 @@
+package com.demo.producer.model;
+
+
+public class ProducerData {
+
+	int id;
+	String message;
+}
